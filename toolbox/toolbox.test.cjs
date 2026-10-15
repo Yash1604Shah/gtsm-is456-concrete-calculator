@@ -23,7 +23,7 @@ const window = { addEventListener(){} };
 vm.runInNewContext(source, { document, window, location:{hash:"#upv"}, console, Number, Math, Set, Object });
 const tools = window.GTSMCalculator;
 assert.ok(tools,"Calculation API should be exported for test");
-assert.equal(tools.tests.length,23);
+assert.equal(tools.tests.length,24);
 const val=(id, data, label) => {
   const result=tools.calculate(id, data);
   const found=result.metrics.find(x=>x.name===label);
@@ -55,4 +55,4 @@ assert.equal(tools.calculate("halfcell",{values:"-170, -240, -310, -390, -360, -
 assert.throws(()=>tools.calculate("schl",{ab:3,mn:4,i:1,v:1}));
 assert.throws(()=>tools.calculate("four",{xa:0,xb:0,xm:2,xn:3,v:1,i:1}));
 assert.throws(()=>tools.calculate("moisture",{tin:30,wet:50,dry:55}));
-console.log("PASS — 23 GTSM calculators are registered; 23 numerical, input-validation and output checks passed.");
+console.log("PASS — 24 GTSM calculators are registered; 23 numerical, input-validation and output checks passed.");
