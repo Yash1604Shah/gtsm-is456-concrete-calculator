@@ -71,7 +71,7 @@
         break;
       case "surf":
         x=positive(v.a,"Probe spacing")/1000; y=positive(v.i,"Current");z=2*Math.PI*x*(v.v/y);
-        m.push(metric("Resistance ΔV/I",fmt(v.v/y)+" Ω"),metric("Apparent surface resistivity",fmt(z)+" Ω·m"),metric("Equivalent",fmt(z*100)+" kΩ·cm"));
+        m.push(metric("Resistance ΔV/I",fmt(v.v/y)+" Ω"),metric("Apparent surface resistivity",fmt(z)+" Ω·m"),metric("Equivalent",fmt(z/10)+" kΩ·cm"));
         break;
       case "carbon":
         arr=nums(v.values,"carbonation depths",1);
