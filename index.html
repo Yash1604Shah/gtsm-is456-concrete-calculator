@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IS 456 Concrete Cube Test Calculator | GTSM Testing Labs</title>
+<meta name="description" content="Free IS 456 concrete cube acceptance calculator. Check three-cube specimen consistency and Table 11 M25 acceptance criteria with examples. GTSM Testing Labs, Ahmedabad.">
+<link rel="canonical" href="https://yash1604shah.github.io/gtsm-is456-concrete-calculator/">
+<meta property="og:type" content="website"><meta property="og:title" content="IS 456 Concrete Cube Test Calculator | GTSM">
+<meta property="og:description" content="Can M25 concrete pass with a 23 MPa sample? Check 3-cube variation, consecutive sample averages and relevant acceptance thresholds.">
+<style>
+:root{--olive:#586e50;--earth:#946f52;--ink:#2a302b;--paper:#f7f7f3;--border:#dce1d9}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink)}
+header{background:white;border-bottom:1px solid var(--border);padding:19px 6%}.header{max-width:990px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+header strong{font-size:18px}header small{color:#686f69;display:block}a{color:var(--olive)}main{max-width:1020px;margin:auto;padding:30px 16px}h1{font-size:clamp(29px,4vw,45px);line-height:1.17;margin:12px 0}h2{font-size:21px;margin:0 0 14px}.muted{color:#606b62}.grid{display:grid;grid-template-columns:1fr 1fr;gap:17px;align-items:start}
+section{background:white;border:1px solid var(--border);border-radius:13px;padding:21px;margin:18px 0;box-shadow:0 4px 12px #00000006}
+label{display:block;font-weight:680;font-size:14px;margin:9px 0 6px}input,select,textarea{font:inherit;width:100%;border:1px solid #abb7a7;border-radius:7px;padding:10px;background:#fff;color:var(--ink)}
+textarea{height:145px;font-family:ui-monospace,monospace;line-height:1.8;font-size:14px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+button,.cta{font:inherit;font-size:14px;font-weight:720;background:var(--olive);border:0;border-radius:8px;color:white;padding:11px 14px;cursor:pointer;text-decoration:none;display:inline-block;margin:6px 7px 6px 0}
+.secondary{background:var(--earth)}.box{background:#edf1e8;border-radius:9px;padding:15px;margin:12px 0}.alert{background:#f9f0e5;border-left:4px solid var(--earth);padding:12px 14px}
+.good{color:#216439}.bad{color:#a03029}.title{font-size:23px;font-weight:800}.scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;border-bottom:1px solid #e0e5de;padding:8px 6px;white-space:nowrap}th{background:#f0f3ec}
+footer{border-top:1px solid var(--border);padding:25px 6%;background:white;font-size:13px}.foot{max-width:990px;margin:auto}
+@media(max-width:720px){.grid{grid-template-columns:1fr}.fields{grid-template-columns:1fr}section{padding:15px}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"GTSM IS 456 Concrete Cube Acceptance Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any browser","isAccessibleForFree":true,"author":{"@type":"Organization","name":"GTSM Testing Labs LLP","url":"https://www.gtsmtestinglabs.in/"}}</script>
+</head><body><header><div class="header"><div><strong>GTSM TESTING LABS LLP</strong><small>Geotechnical · Structural · Materials Testing | Ahmedabad</small></div><a href="https://www.gtsmtestinglabs.in/post/m25-cube-test-result-23-mpa-pass-or-fail-is-456?utm_source=github&utm_medium=referral&utm_campaign=is456_calculator">Read the full M25 guide ↗</a></div></header>
+<main><p style="color:var(--olive);font-weight:750;letter-spacing:.04em">FREE CIVIL ENGINEERING TOOL</p><h1>Is that concrete cube test result actually a failure?</h1>
+<p class="muted">Check three-cube specimen consistency and explore the general four-result and qualifying small-pour acceptance checks under <strong>IS 456:2000 Table 11, as amended</strong>. A sample result is the average of three specimens—not a single cube reading.</p>
+<p class="alert"><strong>Educational calculations only:</strong> This tool does not issue NABL test reports, certify compliance or establish structural safety. Verify the applicable edition, amendments, sampling frequency, test procedures, correct standard deviation and project specifications with the responsible engineer.</p>
+<div class="grid"><section><h2>1. Enter concrete data</h2>
+<div class="fields"><div><label for="grade">Concrete grade</label><select id="grade"><option>M15</option><option>M20</option><option selected>M25</option><option>M30</option><option>M35</option><option>M40</option><option>M45</option><option>M50</option></select></div>
+<div><label for="mode">Acceptance case</label><select id="mode"><option value="four">General: consecutive groups of 4</option><option value="small">Qualifying ≤30 m³ small pour</option></select></div>
+<div><label for="stdtype">Standard deviation source</label><select id="stdtype"><option value="assumed">Table 8 assumed value</option><option value="established">Established site value</option></select></div>
+<div><label for="std">Standard deviation, s (MPa)</label><input id="std" type="number" min="0.1" max="25" step="0.1" value="4" readonly></div></div>
+<label for="cubes">Three individual cube strengths per sample (MPa)</label>
+<textarea id="cubes" spellcheck="false">22.8, 23, 23.2
+29.8, 30, 30.2
+30.8, 31, 31.2
+31.8, 32, 32.2</textarea>
+<p class="muted" style="font-size:13px">One row = one sample, with exactly 3 specimen strengths separated by commas. For the general case use complete blocks of 4 chronological samples. For the qualifying small-pour exception use 1–3 samples, only where fewer than 4 are required by the sampling schedule.</p>
+<button id="calculate">Calculate</button><button class="secondary" id="passing">Passing M25 example</button><button class="secondary" id="failing">Higher-average failing example</button>
+<p class="muted" style="font-size:12px">The calculations run locally in your browser. Values are not uploaded or stored.</p>
+</section><section aria-live="polite"><h2>2. Interpretation</h2><div id="status" class="title">Ready</div><p id="summary" class="muted">Results will appear here.</p><div id="details"></div>
+<p class="muted" style="font-size:13px">An “illustrated checks satisfied” result is not a structural clearance or a substitute for the complete project acceptance assessment.</p>
+<a class="cta" href="https://wa.me/919824049466?text=Hello%20GTSM%2C%20I%20need%20a%20quotation%20for%20concrete%20cube%20testing%20or%20construction%20material%20testing." target="_blank" rel="noopener">Request testing quotation ↗</a>
+<a class="cta secondary" href="https://www.gtsmtestinglabs.in/?utm_source=github&utm_medium=referral&utm_campaign=is456_calculator">GTSM website ↗</a>
+</section></div>
+<section><h2>3. What the calculation means</h2>
+<p><strong>Three-cube sample validity:</strong> Under Clause 15.4, the test result of a sample is the mean of three specimens, provided no specimen deviates from that mean by more than ±15%. Invalid sample results must be investigated before any acceptance conclusion.</p>
+<p><strong>General four-result case:</strong> For grades M15 and above, the required mean of four non-overlapping consecutive valid sample results is at least f<sub>ck</sub> + the greater of [0.825 × standard deviation, rounded to nearest 0.5 MPa] and 3 MPa. The required minimum for each valid sample result is f<sub>ck</sub> − 3 MPa (IS 456 Table 11, as amended).</p>
+<p><strong>Small pour:</strong> For concrete quantity up to 30 m³ when fewer than four samples are required, the mean of the required sample results must be at least f<sub>ck</sub> + 4 MPa; the individual minimum is f<sub>ck</sub> − 2 MPa for 2–3 samples. Where exactly one sample is required, that sample itself must meet f<sub>ck</sub> + 4 MPa. Do not select this option for a larger pour or an incomplete sample series.</p>
+<p><strong>Read the full technical explanation:</strong> <a href="https://www.gtsmtestinglabs.in/post/m25-cube-test-result-23-mpa-pass-or-fail-is-456?utm_source=github&utm_medium=referral&utm_campaign=is456_calculator">M25 Cube Test Result 23 MPa: Pass or Fail?</a></p></section>
+<section><h2>About GTSM Testing Labs</h2><p>GTSM Testing Labs LLP provides concrete cube testing, construction-material testing, geotechnical investigations and structural testing in Ahmedabad and across Gujarat. If you need testing for a current site, send us a quotation enquiry.</p>
+<a class="cta" href="https://wa.me/919824049466?text=Hello%20GTSM%2C%20please%20share%20a%20quotation%20for%20construction%20material%20testing.">Contact GTSM on WhatsApp ↗</a></section></main>
+<footer><div class="foot">© 2026 GTSM Testing Labs LLP · Ahmedabad, Gujarat · +91 98240 49466 · <a href="https://www.gtsmtestinglabs.in/">gtsmtestinglabs.in</a><p>References: IS 456:2000 Clause 15.4, Table 8 and Table 11 as amended; applicable IS 516 strength testing. Example results are fictional; refer to the current official BIS standards and competent engineering judgement.</p></div></footer>
+<script>
+(()=>{
+const $=id=>document.getElementById(id);
+const assumed={"M15":3.5,"M20":4,"M25":4,"M30":5,"M35":5,"M40":5,"M45":5,"M50":5};
+const pass="22.8, 23, 23.2\n29.8, 30, 30.2\n30.8, 31, 31.2\n31.8, 32, 32.2";
+const fail="20.8, 21, 21.2\n31.8, 32, 32.2\n31.8, 32, 32.2\n31.8, 32, 32.2";
+const f=n=>Number(n).toFixed(2).replace(/\.00$/,"");
+const avg=a=>a.reduce((x,y)=>x+y,0)/a.length;
+const roundhalf=x=>Math.round((x+Number.EPSILON)*2)/2;
+function error(s){$("status").textContent="Check your entries";$("status").className="title bad";$("summary").textContent=s;$("details").replaceChildren();}
+function render(){
+const grade=$("grade").value;const fck=Number(grade.slice(1));const sd=Number($("std").value);const small=$("mode").value==="small";
+const lines=$("cubes").value.trim().split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+if(!Number.isFinite(sd)||sd<=0||sd>25||!$("std").value.trim())return error("Please enter a positive standard deviation.");
+if(small?(lines.length<1||lines.length>3):(lines.length<4||lines.length%4!==0))return error(small?"Enter 1–3 required sample rows for the qualifying small-pour case.":"Enter complete groups of four consecutive sample rows (4, 8, 12…).");
+let samples=[];
+for(let i=0;i<lines.length;i++){
+let raw=lines[i].split(/[,;\s]+/).filter(Boolean);if(raw.length!==3)return error("Row "+(i+1)+": enter exactly three cube strengths.");
+let cubes=raw.map(Number);if(cubes.some(x=>!Number.isFinite(x)||x<=0||x>250))return error("Row "+(i+1)+": check your values in MPa.");
+let mean=avg(cubes);let variation=Math.max(...cubes.map(x=>Math.abs(x-mean)/mean))*100;
+samples.push({mean,variation,valid:variation<=15+1e-10});
+}
+const individual=small?(samples.length===1?fck+4:fck-2):fck-3;
+const groupLimit=small?fck+4:fck+Math.max(roundhalf(0.825*sd),3);
+const groups=[];const size=small?samples.length:4;
+for(let i=0;i<samples.length;i+=size){let group=samples.slice(i,i+size);groups.push(avg(group.map(x=>x.mean)));}
+const valid=samples.every(x=>x.valid),individualOK=samples.every(x=>x.mean+1e-9>=individual),groupOK=groups.every(x=>x+1e-9>=groupLimit);
+let status=valid&&individualOK&&groupOK?"Illustrated numerical checks satisfied":valid?"Selected strength criteria not satisfied":"Invalid specimen sample";
+$("status").textContent=status;$("status").className="title "+(valid&&individualOK&&groupOK?"good":"bad");
+$("summary").textContent=valid?"Group mean limit: "+f(groupLimit)+" MPa · Individual sample minimum: "+f(individual)+" MPa.":"At least one 3-cube sample exceeds the ±15% variation requirement; a compliance conclusion cannot be made from the invalid set.";
+let ht="<p><strong>Sample validity and individual checks</strong></p><div class='scroll'><table><tr><th>Sample</th><th>3-cube mean</th><th>Max deviation</th><th>Assessment</th></tr>";
+samples.forEach((x,i)=>ht+="<tr><td>"+(i+1)+"</td><td>"+f(x.mean)+" MPa</td><td>"+f(x.variation)+"%</td><td>"+(!x.valid?"Invalid":x.mean+1e-9>=individual?"Meets minimum":"Below minimum")+"</td></tr>");
+ht+="</table></div><p><strong>Group means</strong></p><div class='scroll'><table><tr><th>Group</th><th>Mean</th><th>Required</th><th>Check</th></tr>";
+groups.forEach((g,i)=>ht+="<tr><td>"+(i+1)+"</td><td>"+f(g)+" MPa</td><td>"+f(groupLimit)+" MPa</td><td>"+(g+1e-9>=groupLimit?"Meets minimum":"Below minimum")+"</td></tr>");
+ht+="</table></div><p style='font-size:13px;color:#667167'>"+(small?"Qualifying small-pour rule selected: independently verify actual pour quantity and prescribed sample count.":"General four-result rule selected: results must be sequential and grouped in non-overlapping fours.")+"</p>";
+$("details").innerHTML=ht;
+}
+function stdUpdate(){if($("stdtype").value==="assumed"){$("std").value=assumed[$("grade").value];$("std").readOnly=true;}else{$("std").readOnly=false;}}
+["grade","stdtype","mode"].forEach(id=>$(id).addEventListener("change",()=>{stdUpdate();render()}));
+$("std").addEventListener("input",render);$("calculate").addEventListener("click",render);
+$("passing").addEventListener("click",()=>{$("grade").value="M25";$("mode").value="four";$("stdtype").value="assumed";$("cubes").value=pass;stdUpdate();render()});
+$("failing").addEventListener("click",()=>{$("grade").value="M25";$("mode").value="four";$("stdtype").value="assumed";$("cubes").value=fail;stdUpdate();render()});
+stdUpdate();render();
+})();
+</script></body></html>
